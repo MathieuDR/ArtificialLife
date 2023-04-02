@@ -1,16 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtificialLife", "ArtificialLife\ArtificialLife.csproj", "{02E8FD09-74E1-4C2C-A645-84E6D00D0691}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtificialLife", "src\ArtificialLife\ArtificialLife.csproj", "{02E8FD09-74E1-4C2C-A645-84E6D00D0691}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life", "Life\Life.csproj", "{59022662-B9BB-4762-ACCD-31C5378914F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life", "src\Life\Life.csproj", "{59022662-B9BB-4762-ACCD-31C5378914F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encoder", "Encoder\Encoder.csproj", "{B69A9411-0B8D-489B-A6DC-16B6762343D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encoder", "src\Encoder\Encoder.csproj", "{B69A9411-0B8D-489B-A6DC-16B6762343D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{62004BC3-86B7-4230-8264-2EDCE1BC3382}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{43F29E74-8531-4D18-B811-814F02C75182}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encoder.Unit", "Encoder.Unit\Encoder.Unit.csproj", "{07C4F30F-E549-4C15-8BC0-C4BB53499836}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encoder.Unit", "tests\Encoder.Unit\Encoder.Unit.csproj", "{07C4F30F-E549-4C15-8BC0-C4BB53499836}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{E3C75D85-34C4-4C64-9442-3726EBBDCD05}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

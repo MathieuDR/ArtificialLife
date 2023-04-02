@@ -33,7 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Encoder\Encoder.csproj" />
+      <ProjectReference Include="..\..\src\Encoder\Encoder.csproj" />
     </ItemGroup>
 
 </Project>
