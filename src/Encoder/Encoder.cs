@@ -78,7 +78,15 @@ public static class Encoder {
 
         switch (genericType) {
             case {} t when t == typeof(Nullable<>):
-                throw new NotImplementedException();
+                if (value is null) {
+                    writer.Write(false);
+                    return;
+                }
+                
+                writer.Write(true);
+                var underlyingType = Nullable.GetUnderlyingType(type);
+                if (underlyingType is null) throw new NullReferenceException();
+                WriteValue(underlyingType, value, writer);
                 return;
             case {} t when t == typeof(List<>):
                 throw new NotImplementedException();

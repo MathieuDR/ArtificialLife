@@ -31,7 +31,7 @@ public static class Decoder {
         
         foreach (var member in members) {
             var memberType = member.GetMemberType();
-            var getValue = GetMemberValue(memberType, binaryReader);
+            var getValue = ReadValue(memberType, binaryReader);
             values.Add((member, getValue));
         }
 
@@ -45,16 +45,31 @@ public static class Decoder {
         return obj!;
     }
 
-    private static object GetMemberValue(Type type, BinaryReader binaryReader) =>
+    private static object? ReadValue(Type type, BinaryReader binaryReader) =>
         type switch {
             { IsEnum: true } => binaryReader.ReadInt32(),
             { IsPrimitive: true } t => ReadPrimitives(t, binaryReader),
             { } t when t == typeof(string) => binaryReader.ReadString(),
             { } t when t == typeof(decimal) => binaryReader.ReadDecimal(),
+            {IsGenericType: true} => ReadGeneric(type, binaryReader),
             { IsClass: true } t => DecodeObject(t, binaryReader.ReadBytes(binaryReader.ReadInt32())),
             _ => throw new ArgumentOutOfRangeException(nameof(type), type, $"Type {type} is not supported")
         };
-    
+
+    private static object? ReadGeneric(Type type, BinaryReader binaryReader) {
+        var genericType = type.GetGenericTypeDefinition();
+        
+        return genericType switch {
+            { } t when t == typeof(Nullable<>) => ReadNullable(type.GenericTypeArguments.First(), binaryReader),
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, $"Type {type} is not supported")
+        };
+    }
+
+    private static object? ReadNullable(Type type, BinaryReader binaryReader) {
+        var hasValue = binaryReader.ReadBoolean();
+        return hasValue ? ReadValue(type, binaryReader) : null;
+    }
+
 
     private static T DecodeObject<T>(byte[] bytes) {
        return (T) DecodeObject(typeof(T), bytes); 

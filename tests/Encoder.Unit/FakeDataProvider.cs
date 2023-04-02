@@ -5,7 +5,7 @@ namespace Encoder.Unit;
 
 internal sealed class FakeDataProvider : IEnumerable<object[]> {
     public static IEnumerable<object[]> TestData() {
-        Randomizer.Seed = new Random(198);
+        Randomizer.Seed = new Random(1981);
         
         yield return new object[]{ FakerProviders.FakeConstructorSimpleModel.Generate() };
         yield return new object[]{ FakerProviders.FakeNullableModel.Generate() };
